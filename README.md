@@ -10,7 +10,7 @@ The first thing to do is clone the repository:
 
 ```sh
 $ git clone https://github.com/manav121999/weather.git
-$ cd weather
+$ cd WeatherApp
 ```
 
 Create a virtual environment to install dependencies in and activate it:
