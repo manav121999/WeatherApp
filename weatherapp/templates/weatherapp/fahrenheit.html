@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- The title,input box and temperature unit buttons -->
+        <div class="row d-flex justify-content-center align-items-center h-100 mt-4">
+            <div class="col-md-8 col-lg-6 col-xl-4">
+                <h3 class="mb-4 pb-2 fw-normal text-center">Check the weather forecast</h3>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="input-group rounded mb-3">
+                        <input type="text" class="form-control rounded-0" placeholder="City" name="city"
+                            aria-label="Search" aria-describedby="search-addon" />
+                        <button type="submit" class="btn btn-dark rounded-0">Submit</button>
+                    </div>
+                </form>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="text-center">
+                    <a href="{% url 'celcius' %}"><button type="button"
+                            class="btn btn-secondary rounded-0">Celcius</button></a>
+                    <a href="{% url 'fahrenheit' %}"><button type="button"
+                            class="btn btn-secondary rounded-0">Farheneit</button></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- Content is only displayed if there is not request and no error messages -->
+        {% if request.POST and not messages %}
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <h6 class="mb-1 sfw-normal">Air Quality Data</h6>
+                    <hr>
+                    <p>Air Quality : <strong>{{quality}}</strong></p>
+                    <p>CO : <strong>{{co}}</strong> μg/m3</p>
+                    <p>NO : <strong>{{no}}</strong> μg/m3</p>
+                    <p>NO<sub>2</sub> : <strong>{{no2}}</strong> μg/m3</p>
+                    <p>O<sub>3</sub> : <strong>{{o3}}</strong> μg/m3</p>
+                    <p>SO<sub>2</sub> : <strong>{{so2}}</strong> μg/m3</p>
+                    <p>PM<sub>2.5</sub> : <strong>{{pm2}}</strong> μg/m3</p>
+                    <p>PM<sub>10</sub> : <strong>{{pm10}}</strong> μg/m3</p>
+                    <p>NH<sub>3</sub> : <strong>{{nh3}}</strong> μg/m3</p>
+                </div>
+                <div class="col">
+                    <h6 class="mb-1 sfw-normal">Current Weather</h6>
+                    <hr>
+                    <img src="https://openweathermap.org/img/wn/{{icon1}}@2x.png" alt="" height="auto" width="auto">
+                    <h2 class="mb-2"><strong>{{temperature}}°F</strong></h2>
+                    <h4 class="mb-1 sfw-normal">{{city}}, {{country}}</h4>
+                    <p>{{description|title}}</p>
+                    <p>Humidity : <strong>{{humidity}}%</strong>, Wind Speed : <strong>{{windspeed}}</strong> kph</p>
+                </div>
+                <div class="col">
+                    <h6 class="mb-1 sfw-normal">Weather Forecast</h6>
+                    <hr>
+                    <p>{{date1}}<span><img src="https://openweathermap.org/img/wn/{{icon1}}@2x.png" alt=""></span> Max:
+                        <strong>{{temp_max1}}°F</strong>, Min: <strong>{{temp_min1}}°F</strong>
+                    </p>
+                    <p>{{date2}}<span><img src="https://openweathermap.org/img/wn/{{icon2}}@2x.png" alt=""></span> Max:
+                        <strong>{{temp_max2}}°F</strong>, Min: <strong>{{temp_min2}}°F</strong>
+                    </p>
+                    <p>{{date3}}<span><img src="https://openweathermap.org/img/wn/{{icon3}}@2x.png" alt=""></span> Max:
+                        <strong>{{temp_max3}}°F</strong>, Min: <strong>{{temp_min3}}°F</strong>
+                    </p>
+                    <p>{{date4}}<span><img src="https://openweathermap.org/img/wn/{{icon4}}@2x.png" alt=""></span> Max:
+                        <strong>{{temp_max4}}°F</strong>, Min: <strong>{{temp_min4}}°F</strong>
+                    </p>
+                    <p>{{date5}}<span><img src="https://openweathermap.org/img/wn/{{icon5}}@2x.png" alt=""></span> Max:
+                        <strong>{{temp_max5}}°F</strong>, Min: <strong>{{temp_min5}}°F</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
