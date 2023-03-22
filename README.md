@@ -9,7 +9,7 @@ API to fetch the weather data.
 The first thing to do is clone the repository:
 
 ```sh
-$ git clone https://github.com/manav121/sample-django-app.git
+$ git clone https://github.com/manav121999/weather.git
 $ cd weather
 ```
 
