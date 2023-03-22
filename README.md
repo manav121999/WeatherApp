@@ -52,6 +52,6 @@ Once `pip` has finished downloading the dependencies:
 
 # Screenshots of the Project
 <p align="center">
-  <img width="660" height="300" src="static/ss/a.png">
-  <img width="660" height="300" src="static/ss/b.png">
+  <img width="660" height="300" src="static/ss/1.png">
+  <img width="660" height="300" src="static/ss/2.png">
 </p>
